@@ -103,7 +103,8 @@ class ReactMultiSelect extends Component {
     let optionType;
 
     if (this.state.data !== "") {
-      if (this.state.data[this.state.keyLevel1].subcategory[e.target.value].type !== undefined) {
+ 
+      if (this.state.data[this.state.keyLevel1].subcategory[e.target.value].type.length !== 1) {
 
         optionType = this
           .state
@@ -112,7 +113,12 @@ class ReactMultiSelect extends Component {
           .type
           .map((data, key) => <option key={key} value={key}>{data.name}</option>);
       } else {
-        //przejdź do innej strony
+        
+        let id = this.state.data[this.state.selectLevel1].subcategory[e.target.value].id;
+        let linkRewrite = this.state.data[this.state.selectLevel1].subcategory[e.target.value].link_rewrite;
+        let link = "http://sklep.ambrozy.com.pl/"+id+"-"+linkRewrite;
+        window.location.href = link;
+        
       }
     }
 
